@@ -36,7 +36,7 @@ O Banco Comunitário, como instituição financeira sem fins lucrativos, tem um 
   
 <br>
 
-![Diagrama de Classes UML](imagens/Diagrama%20Banco%20comunitario.jpeg)
+![Diagrama de Classes UML](https://github.com/IzabelAzoia/ON36-IJS-BancoSolDoAmanha/blob/main/Imagens/diagrama_banco_comunitario.jpeg)
 
 O nome Escolhido para a moeda local do Banco Comunitário é: "Sol"
 
