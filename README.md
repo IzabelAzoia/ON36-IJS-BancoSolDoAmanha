@@ -35,6 +35,7 @@ O Banco Comunitário, como instituição financeira sem fins lucrativos, tem um 
      Apoio à Moradia: Auxiliar na obtenção de crédito para moradia digna e acessível, contribuindo para a qualidade de vida e a inclusão social.
   
 <br>
+<br>
 
 ![Diagrama de Classes UML](https://github.com/IzabelAzoia/ON36-IJS-BancoSolDoAmanha/blob/main/Imagens/diagrama_banco_comunitario.jpeg)
 
