@@ -6,6 +6,19 @@ Banco comunitario
 
 - **Sistema**: Banco Comunitário.
 - **Paradigma escolhido**:  Programação Orientada a Objetos (POO)
+
+- A Programação Orientada a Objetos (POO) se destaca como a escolha ideal para o desenvolvimento do sistema de gerenciamento de biblioteca devido à sua capacidade de:
+  A POO permite a criação de classes que representam as entidades do sistema de forma clara e organizada. Isso facilita a compreensão e a manutenção do código,
+  especialmente em um sistema com diversas interações entre as entidades.
+- Promover Reuso de Código: Através de conceitos como herança e polimorfismo, a POO possibilita o reuso de código em diferentes partes do sistema.
+- Isso significa que você pode escrever funções genéricas para realizar tarefas comuns, como verificar o histórico de empréstimos ou registrar datas,
+  e reutilizá-las em diferentes classes. Essa modularidade torna o código mais enxuto, fácil de entender e modificar, além de reduzir o tempo de desenvolvimento.
+- Facilitar a Evolução do Sistema: A POO oferece flexibilidade para adicionar novas funcionalidades ou modificar regras de negócio no futuro.
+- Novas classes e métodos podem ser facilmente integrados à estrutura existente sem afetar o código já escrito. 
+-  A POO organiza o código em módulos coesos e bem definidos, representando as entidades e funcionalidades do sistema. Isso torna o código mais legível,
+-  fácil de entender e modificar por outros desenvolvedores, mesmo que não estejam familiarizados com todo o projeto.
+
+-  
 - **Descrição**: 
 O Banco Comunitário, como instituição financeira sem fins lucrativos, tem um papel fundamental na promoção da inclusão financeira e no desenvolvimento local. Através de seus serviços e produtos diferenciados, pode beneficiar diversas fatias da sociedade, especialmente aquelas que são marginalizadas pelo sistema bancário tradicional.
 <br>
