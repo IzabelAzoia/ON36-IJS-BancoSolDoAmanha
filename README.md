@@ -7,19 +7,14 @@ Banco comunitario
 - **Sistema**: Banco Comunitário.
 - **Paradigma escolhido**:  Programação Orientada a Objetos (POO)
 
-- A Programação Orientada a Objetos (POO) se destaca como a escolha ideal para o desenvolvimento do sistema de gerenciamento de biblioteca devido à sua capacidade de:
-  A POO permite a criação de classes que representam as entidades do sistema de forma clara e organizada. Isso facilita a compreensão e a manutenção do código,
-  especialmente em um sistema com diversas interações entre as entidades.
-- Promover Reuso de Código: Através de conceitos como herança e polimorfismo, a POO possibilita o reuso de código em diferentes partes do sistema.
-- Isso significa que você pode escrever funções genéricas para realizar tarefas comuns, como verificar o histórico de empréstimos ou registrar datas,
-  e reutilizá-las em diferentes classes. Essa modularidade torna o código mais enxuto, fácil de entender e modificar, além de reduzir o tempo de desenvolvimento.
-- Facilitar a Evolução do Sistema: A POO oferece flexibilidade para adicionar novas funcionalidades ou modificar regras de negócio no futuro.
-- Novas classes e métodos podem ser facilmente integrados à estrutura existente sem afetar o código já escrito. 
--  A POO organiza o código em módulos coesos e bem definidos, representando as entidades e funcionalidades do sistema. Isso torna o código mais legível,
--  fácil de entender e modificar por outros desenvolvedores, mesmo que não estejam familiarizados com todo o projeto.
+- A Programação Orientada a Objetos (POO) é ideal para este projeto devido à sua capacidade de:
 
--  
+  - **Organizar o Código**: Criação de classes que representam as entidades do sistema de forma clara e organizada.
+  - **Promover Reuso de Código**: Utilização de herança e polimorfismo para criar funções genéricas e reutilizáveis.
+  - **Facilitar a Evolução do Sistema**: Adição de novas funcionalidades e modificação de regras de negócio com flexibilidade.
+ 
 - **Descrição**: 
+<<<<<<< HEAD
 O Banco Comunitário, como instituição financeira sem fins lucrativos, tem um papel fundamental na promoção da inclusão financeira e no desenvolvimento local. Através de seus serviços e produtos diferenciados, pode beneficiar diversas fatias da sociedade, especialmente aquelas que são marginalizadas pelo sistema bancário tradicional.
 <br>
 **Objetivo**: O desenvolvimento econômico, social e sustentável da região Paraná
@@ -37,7 +32,27 @@ O Banco Comunitário, como instituição financeira sem fins lucrativos, tem um 
  **Diagrama de Classes**
 
 ![Diagrama de Classes UML](https://github.com/IzabelAzoia/ON36-IJS-BancoSolDoAmanha/blob/main/Imagens/diagrama_banco_comunitario.jpeg)
+=======
+- O Banco Comunitário, como instituição financeira sem fins lucrativos, tem um papel fundamental na promoção da inclusão financeira e no desenvolvimento local. Através      de seus serviços e produtos diferenciados, pode beneficiar diversas fatias da sociedade, especialmente aquelas que são marginalizadas pelo sistema bancário tradicional.
+<br> 
+# 📦 Estrutura de Pastas
+>>>>>>> 8553881 (Inicio projeto banco banco comunitario)
 
-O nome Escolhido para a moeda local do Banco Comunitário é: "Sol"
+O código do Banco Comunitário é organizado em três camadas principais:
+
+* **core:** Camada que contém as entidades principais (modelos) do sistema.
+* **services:** Camada que encapsula a lógica de negócio e as regras de negócio do sistema.
+* **repositories:** Camada responsável pelo acesso aos dados.  
+
+📜 Licença
+Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
+
+ Desenvolvedor Principal
+ - Izabel Azoia
+ 
+<br>
+💰 Moeda Local
+
+O nome Escolhido para a moeda local do Banco Comunitário é: "Sol" 🌞
 
 <strong><p align = "center"> Este projeto faz parte do curso de JavaScript com foco em backend e AWS da { reprograma } </p></strong>
