@@ -1,0 +1,21 @@
+{
+  "name": "on36-ijs-bancosoldoamanha",
+  "version": "1.0.0",
+  "description": "Banco comunitario\r <br>",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "sucrase": "^3.35.0",
+    "ts-jest": "^29.2.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.3"
+  }
+}
