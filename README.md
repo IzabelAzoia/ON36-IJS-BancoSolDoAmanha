@@ -13,8 +13,7 @@ Banco comunitario
   - **Promover Reuso de Código**: Utilização de herança e polimorfismo para criar funções genéricas e reutilizáveis.
   - **Facilitar a Evolução do Sistema**: Adição de novas funcionalidades e modificação de regras de negócio com flexibilidade.
  
-- **Descrição**: 
-<<<<<<< HEAD
+- **Descrição**:  
 O Banco Comunitário, como instituição financeira sem fins lucrativos, tem um papel fundamental na promoção da inclusão financeira e no desenvolvimento local. Através de seus serviços e produtos diferenciados, pode beneficiar diversas fatias da sociedade, especialmente aquelas que são marginalizadas pelo sistema bancário tradicional.
 <br>
 **Objetivo**: O desenvolvimento econômico, social e sustentável da região Paraná
@@ -35,8 +34,7 @@ O Banco Comunitário, como instituição financeira sem fins lucrativos, tem um 
 =======
 - O Banco Comunitário, como instituição financeira sem fins lucrativos, tem um papel fundamental na promoção da inclusão financeira e no desenvolvimento local. Através      de seus serviços e produtos diferenciados, pode beneficiar diversas fatias da sociedade, especialmente aquelas que são marginalizadas pelo sistema bancário tradicional.
 <br> 
-# 📦 Estrutura de Pastas
->>>>>>> 8553881 (Inicio projeto banco banco comunitario)
+# 📦 Estrutura de Pastas 
 
 O código do Banco Comunitário é organizado em três camadas principais:
 
