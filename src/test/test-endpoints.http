@@ -1,0 +1,35 @@
+### Adicionar um Novo Cliente
+POST http://localhost:3000/cliente/adicionar
+Content-Type: application/json
+
+{
+  "nome": "Izabel Castro",
+  "email": "izabel.castro@example.com",
+  "dataNascimento": "25-12-1995"
+}
+
+### Buscar Cliente pelo ID
+GET http://localhost:3000/cliente/00001
+
+### Buscar Todos os Clientes
+GET http://localhost:3000/cliente
+
+### Atualizar um Cliente pelo ID
+PATCH http://localhost:3000/cliente/00001
+Content-Type: application/json
+
+{
+  "nome": "Izabel Castro"
+}
+
+### Verificar Crédito Comunitário
+POST http://localhost:3000/cliente/verificar-credito/00001
+
+### Associar Conta a um Cliente
+POST http://localhost:3000/cliente/associar-conta
+Content-Type: application/json
+
+{
+  "clienteId": "00001",
+  "contaId": "000012"
+}
