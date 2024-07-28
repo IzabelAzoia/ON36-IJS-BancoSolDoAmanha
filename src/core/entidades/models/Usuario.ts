@@ -1,7 +1,8 @@
-import { IUsuario } from "../interfaces/IUsuario";
 
-export class Usuario implements IUsuario {
-    id: number;
+import { UsuarioSpec } from "../interfaces/UsuarioSpec";
+
+export class Usuario implements UsuarioSpec {
+    id: string;
     nome: string;
     senha: string;
     dataNascimento: Date;
@@ -11,7 +12,8 @@ export class Usuario implements IUsuario {
     tipoUsuario: string;
     statusUsuario: string;
 
-    constructor(id: number, nome: string, senha: string, dataNascimento: Date, cpf: string, telefone: string, endereco: string, tipoUsuario: string, statusUsuario: string) {
+
+    constructor(id: string, nome: string, senha: string, dataNascimento: Date, cpf: string, telefone: string, endereco: string, tipoUsuario: string, statusUsuario: string) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;

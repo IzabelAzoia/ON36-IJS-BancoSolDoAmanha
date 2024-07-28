@@ -12,7 +12,7 @@ Banco comunitario
   - **Organizar o Código**: Criação de classes que representam as entidades do sistema de forma clara e organizada.
   - **Promover Reuso de Código**: Utilização de herança e polimorfismo para criar funções genéricas e reutilizáveis.
   - **Facilitar a Evolução do Sistema**: Adição de novas funcionalidades e modificação de regras de negócio com flexibilidade.
- 
+  
 - **Descrição**:  
 O Banco Comunitário, como instituição financeira sem fins lucrativos, tem um papel fundamental na promoção da inclusão financeira e no desenvolvimento local. Através de seus serviços e produtos diferenciados, pode beneficiar diversas fatias da sociedade, especialmente aquelas que são marginalizadas pelo sistema bancário tradicional.
 <br>
@@ -27,11 +27,11 @@ O Banco Comunitário, como instituição financeira sem fins lucrativos, tem um 
       Orientação Profissional: Auxiliar jovens na escolha de carreira, desenvolvimento de currículo e busca por oportunidades de emprego, facilitando a inserção no mercado de trabalho.
   5- Pessoas em Situação de Vulnerabilidade:
      Apoio à Moradia: Auxiliar na obtenção de crédito para moradia digna e acessível, contribuindo para a qualidade de vida e a inclusão social.
-  
+   
  **Diagrama de Classes**
 
 ![Diagrama de Classes UML](https://github.com/IzabelAzoia/ON36-IJS-BancoSolDoAmanha/blob/main/Imagens/diagrama_banco_comunitario.jpeg)
-=======
+ 
 - O Banco Comunitário, como instituição financeira sem fins lucrativos, tem um papel fundamental na promoção da inclusão financeira e no desenvolvimento local. Através      de seus serviços e produtos diferenciados, pode beneficiar diversas fatias da sociedade, especialmente aquelas que são marginalizadas pelo sistema bancário tradicional.
 <br> 
 # 📦 Estrutura de Pastas 
@@ -49,7 +49,7 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para d
  - Izabel Azoia
  
 <br>
-💰 Moeda Local
+💰 Moeda Local 
 
 O nome Escolhido para a moeda local do Banco Comunitário é: "Sol" 🌞
 
