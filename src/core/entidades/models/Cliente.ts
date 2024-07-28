@@ -1,8 +1,7 @@
+import { IUsuario } from '../interfaces/IUsuario';
 
-import { UsuarioSpec } from "../interfaces/UsuarioSpec";
-
-export class Usuario implements UsuarioSpec {
-    id: string;
+export class Cliente implements IUsuario {
+    id: number;
     nome: string;
     senha: string;
     dataNascimento: Date;
@@ -12,8 +11,7 @@ export class Usuario implements UsuarioSpec {
     tipoUsuario: string;
     statusUsuario: string;
 
-
-    constructor(id: string, nome: string, senha: string, dataNascimento: Date, cpf: string, telefone: string, endereco: string, tipoUsuario: string, statusUsuario: string) {
+    constructor(id: number, nome: string, senha: string, dataNascimento: Date, cpf: string, telefone: string, endereco: string) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
@@ -21,11 +19,14 @@ export class Usuario implements UsuarioSpec {
         this.cpf = cpf;
         this.telefone = telefone;
         this.endereco = endereco;
-        this.tipoUsuario = tipoUsuario;
-        this.statusUsuario = statusUsuario;
+        this.tipoUsuario = 'cliente';
+        this.statusUsuario = 'ativo';
     } 
 
     consultarDados(): void {
         console.log(`Nome: ${this.nome}, Endereço: ${this.endereco}, Telefone: ${this.telefone}`);
     } 
 }
+ 
+
+ 
