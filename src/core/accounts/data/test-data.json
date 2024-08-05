@@ -1,0 +1,13 @@
+{
+    "client": {
+        "id": "1",
+        "name": "John Doe",
+        "password": "password",
+        "birthDate": "1990-01-01",
+        "cpf": "12345678900",
+        "rg": "123456789",
+        "address": "Address",
+        "email": "clientEmail@example.com",
+        "status": "Active"
+    }
+}
