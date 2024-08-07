@@ -1,36 +1,29 @@
-# Dependências do Node.js
 node_modules/
 
-# Diretório de testes (se houver, geralmente não precisa estar no Git)
-testes/
+test/
 
-# Configurações do Visual Studio Code
 .vscode/
 
-# Saídas de compilação
 dist/
 build/
 
-# Arquivos de ambiente
 .env
 
-# Arquivos de log
 *.log
 
-# Sistema de arquivos do macOS
 .DS_Store
 
-# Arquivos temporários de sistema
 *.swp
 *.swo
 
-# IDEs e editores de texto
 .idea/
 
-# Arquivos de cache
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
  
 yarn.lock
-n 
+n
+
+
+tsconfig.tsbuildinfo
