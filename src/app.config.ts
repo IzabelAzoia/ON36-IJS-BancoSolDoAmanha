@@ -1,3 +1,1 @@
-export const APP_CONFIG = {
-    // configurações globaisi
-};
+export const APP_CONFIG = {};
