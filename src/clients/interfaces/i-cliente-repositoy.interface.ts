@@ -1,8 +1,9 @@
-import { Client } from '../../accounts/models/client.model';
+
+import { ClientData } from "../../clients/models/client-data.model";
 
 export interface IClientRepositoryInterface {
-  findById(id: string): Promise<Client | undefined>;
-  save(client: Client): Promise<void>;
+  findById(id: string): Promise<ClientData | undefined>;
+  save(client: ClientData): Promise<void>;
   delete(id: string): Promise<void>;
-  findAll(): Promise<Client[]>;
+  findAll(): Promise<ClientData[]>;
 }

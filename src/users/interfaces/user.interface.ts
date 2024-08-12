@@ -1,0 +1,13 @@
+import { UserType } from '../enums/user-types.enum';
+import { UserStatus } from '../enums/user.status.enum';
+
+export interface UserDetailsInterface {
+    getUserData(): string;
+    updateUser(name: string, address: string, phone: string, password: string): void;
+}
+
+export interface UserInterface {
+    id: string;
+    name: string;
+    email: string;
+}

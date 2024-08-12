@@ -1,5 +1,5 @@
-import { AccountInterface } from '../../SEmnome/interfaces/account.interface';
-import { Transaction } from './transaction.model';
+import { AccountInterface } from '../../accounts/interfaces/account.interface';
+import { Transaction } from '../../transactions/models/transaction.module';
 
 export class ATM {
     private transactions: Transaction[] = [];
@@ -47,7 +47,7 @@ export class ATM {
      * Displays the details of the account.
      * @param account - The account whose details will be displayed.
      */
-    public displayDetails(account: Account): void {
+    public displayDetails(account: AccountInterface): void {
         console.log(`Account ID: ${account.id}`);
         console.log(`Balance: ${account.getBalance()}`);
         // Additional account details can be added here

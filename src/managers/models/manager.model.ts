@@ -1,10 +1,12 @@
-import { UserInterface } from 'user/interface/user.interface';
-import { ClientModel } from 'clients/models/client.model';
-import { UserType } from 'user/enums/user-types.enum';
-import { UserStatus } from 'user/enums/user.status.enum';
-import { AccountType } from 'accounts/enums/account.enum';
-import { AccountFactory } from 'accounts/factories/account.factory';
-import { AccountInterface } from 'accounts/interfaces/account.interface';
+import { UserInterface } from '../../users/interfaces/user.interface';
+import { ClientManagementService } from '../../clients/services/client-management.service';
+import { AccountManagementService } from '../../accounts/services/account-management.service';
+import { UserType } from '../../users/enums/user-types.enum';
+import { UserStatus } from '../../users/enums/user.status.enum';
+import { AccountType } from 'src/accounts/enums/account-type.enum';
+import { ClientData } from 'src/clients/models/client-data.model';
+import { CheckingAccount } from 'src/accounts/models/checking-account.model';
+import { SavingsAccount } from 'src/accounts/models/savings-account.model';
 
 export class ManagerModel implements UserInterface {
     public id: string;
@@ -17,7 +19,9 @@ export class ManagerModel implements UserInterface {
     public address: string;
     public userType: UserType = UserType.Manager;
     public userStatus: UserStatus;
-    public clients: ClientModel[] = [];
+    public email: string;
+    private accountService: AccountManagementService;
+    public clientService: ClientManagementService;
 
     constructor(
         id: string,
@@ -29,7 +33,9 @@ export class ManagerModel implements UserInterface {
         phone: string,
         address: string,
         userStatus: UserStatus,
-        private accountFactory: AccountFactory
+        email: string,
+        clientService: ClientManagementService,
+        accountService: AccountManagementService
     ) {
         this.id = id;
         this.role = role; 
@@ -40,10 +46,15 @@ export class ManagerModel implements UserInterface {
         this.phone = phone;
         this.address = address;
         this.userStatus = userStatus;
+        this.email = email;
+        this.clientService = clientService;
+        this.accountService = accountService;
     }
+
     getUserData(): string {
         throw new Error('Method not implemented.');
     }
+
     authenticateUser(password: string): boolean {
         return this.password === password;
     }
@@ -60,29 +71,25 @@ export class ManagerModel implements UserInterface {
         clientId: string,
         balance: number,
         extraParam?: number
-    ): AccountInterface {
-        const client = this.clients.find(c => c.id === clientId);
+    ): void {
+        const client = this.clientService.findClientById(clientId);
         if (!client) {
             throw new Error('Client not found');
         }
 
-        return this.accountFactory.createAccount(this.id, type, client, balance, extraParam);
+        const account = this.accountService.createAccount(this.id, type, client, balance, extraParam);
+        this.accountService.addAccount(client, account);
     }
 
-    addClient(client: ClientModel): void {
-        this.clients.push(client);
+    addClient(client: ClientData): void {
+        this.clientService.addClient(client);
     }
 
     removeClient(clientId: string): void {
-        this.clients = this.clients.filter(client => client.id !== clientId);
+        this.clientService.removeClient(clientId);
     }
-
-    addAccount(clientId: string, account: AccountInterface): void {
-        const client = this.clients.find(c => c.id === clientId);
-        if (!client) {
-            throw new Error('Client not found');
-        }
-
-        client.accounts.push(account);
+    addAccount(clientId: string, account: CheckingAccount | SavingsAccount): void {
+        // Implementação para adicionar uma conta ao cliente
     }
 }
+

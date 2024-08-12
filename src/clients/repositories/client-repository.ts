@@ -1,14 +1,14 @@
 import { IClientRepositoryInterface } from '../interfaces/i-cliente-repositoy.interface';
-import { ClientModel } from 'clients/models/client.model';
+import { ClientData } from '../../clients/models/client-data.model'; 
 
 export class ClientRepository implements IClientRepositoryInterface {
-    private readonly clients: Map<string, ClientModel> = new Map();
+    private readonly clients: Map<string, ClientData> = new Map();
 
-    async findById(id: string): Promise<ClientModel | undefined> {
+    async findById(id: string): Promise<ClientData | undefined> {
         return this.clients.get(id);
     }
 
-    async save(client: ClientModel): Promise<void> {
+    async save(client: ClientData): Promise<void> {
         this.clients.set(client.id, client);
     }
 
@@ -16,7 +16,7 @@ export class ClientRepository implements IClientRepositoryInterface {
         this.clients.delete(id);
     }
 
-    async findAll(): Promise<ClientModel[]> {
+    async findAll(): Promise<ClientData[]> {
         return Array.from(this.clients.values());
     }
 }

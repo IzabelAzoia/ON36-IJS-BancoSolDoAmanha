@@ -1,11 +1,11 @@
-import { AccountInterface } from 'accounts/interfaces/account.interface';
-import { AccountType } from 'accounts/enums/account-type.enum';
-import { ClientModel } from 'clients/models/client.model';
+import { AccountInterface } from '../../accounts/interfaces/account.interface';
+import { AccountType } from '../../accounts/enums/account-type.enum';
+import { ClientData } from '../../clients/models/client-data.model';
 
-export abstract class AccountBase{
+export abstract class AccountBase {
     constructor(
         public id: string,
-        public client: ClientModel,
+        public client: ClientData,
         public balance: number,
         public type: AccountType
     ) {}
@@ -14,5 +14,5 @@ export abstract class AccountBase{
     abstract withdraw(amount: number): boolean;
     abstract transfer(destinationAccount: AccountInterface, amount: number): boolean;
     abstract checkBalance(): number;
-    abstract generateStatement(): string;
+    abstract generateStatement(): string; // Alterado para string
 }

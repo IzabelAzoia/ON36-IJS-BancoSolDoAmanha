@@ -1,8 +1,8 @@
 import { BadRequestException, Controller, Post, Body, Delete, Param, Patch, Get } from '@nestjs/common';
-import { ManagerService } from 'managers/services/manager.service';
-import { CreateClientDto } from 'clients/dtos/create-client.dto';
-import { UpdateAccountDto } from 'accounts/dtos/update-account.dto';
-import { AccountType } from 'accounts/enums/account-type.enum';
+import { ManagerService } from '../../managers/services/manager.service';
+import { CreateClientDto } from '../../clients/dtos/create-client.dto';
+import { UpdateAccountDto } from '../../accounts/dtos/update-account.dto';
+import { AccountType } from '../../accounts/enums/account-type.enum';
 
 function convertToAccountType(accountType: string): AccountType | undefined {
   if (Object.values(AccountType).includes(accountType as AccountType)) {

@@ -1,12 +1,12 @@
-import { AccountModel } from 'accounts/models/account.model';
-import { AccountFactoryInterface } from 'accounts/interfaces/account-factory.interface';
-import { ClientModel } from 'clients/models/client.model';
+import { AccountModel } from '../../accounts/models/account.model';
+import { AccountFactoryInterface } from '../../accounts/interfaces/account-factory.interface';
+import { ClientData } from '../../clients/models/client-data.model';
 import { Injectable } from '@nestjs/common';
-import { AccountType } from 'accounts/enums/account-type.enum';
-import { CheckingAccount } from 'accounts/models/checking-account.model';
-import { ClientService } from 'clients/services/client.service';
-import { ManagerService } from 'managers/services/manager.service';
-import { SavingsAccount } from 'accounts/models/savings-account.model';
+import { AccountType } from '../../accounts/enums/account-type.enum';
+import { CheckingAccount } from '../../accounts/models/checking-account.model';
+import { ClientService } from '../../clients/services/client.service';
+import { ManagerService } from '../../managers/services/manager.service';
+import { SavingsAccount } from '../../accounts/models/savings-account.model';
 
 @Injectable()
 export class SavingsAccountFactory implements AccountFactoryInterface {
@@ -17,7 +17,7 @@ export class SavingsAccountFactory implements AccountFactoryInterface {
     createAccount(
         managerId: string,
         type: AccountType,
-        client: ClientModel,
+        client: ClientData,
         balance: number,
         extraParam?: number
     ): SavingsAccount {

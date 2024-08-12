@@ -1,30 +1,30 @@
 import { Injectable } from '@nestjs/common';
-import { ClientModel } from 'clients/models/client.model';
-import { AccountType } from 'accounts/enums/account-type.enum';
-import { CheckingAccount } from 'accounts/models/checking-account.model';
-import { ClientService } from 'clients/services/client.service';
-import { ManagerService } from 'managers/services/manager.service';
-import { AccountFactoryInterface } from 'accounts/interfaces/account-factory.interface';
+import { ClientData } from '../../clients/models/client-data.model';
+import { AccountType } from '../../accounts/enums/account-type.enum';
+import { CheckingAccount } from '../../accounts/models/checking-account.model';
+import { ClientService } from '../../clients/services/client.service';
+import { ManagerService } from '../../managers/services/manager.service';
+import { AccountFactoryInterface } from '../../accounts/interfaces/account-factory.interface';
 
 @Injectable()
-export class CheckingAccountFactory implements AccountFactoryInterface {
+export class CheckingAccountFactory {
     constructor(
         private clientService: ClientService,
         private managerService: ManagerService
     ) {}
 
-    createAccount(
+    async createAccount(
         managerId: string,
         type: AccountType,
-        client: ClientModel,
+        client: ClientData,
         balance: number,
         extraParam?: number
-    ): CheckingAccount {
+    ): Promise<CheckingAccount> {
         if (type !== AccountType.Checking) {
             throw new Error('Invalid account type');
         }
 
-        const manager = this.managerService.getManager(managerId);
+        const manager = await this.managerService.getManager(managerId);
         if (!client) {
             throw new Error('Client not found');
         }
@@ -37,7 +37,16 @@ export class CheckingAccountFactory implements AccountFactoryInterface {
             throw new Error('Overdraft limit is required for checking account');
         }
 
-        const account = new CheckingAccount(this.generateId(), balance, extraParam);
+        const account = new CheckingAccount(
+            this.generateId(),
+            balance,
+            client,
+            extraParam,
+            type,
+            new Date(),
+            client.name  
+        );
+
         manager.addAccount(client.id, account);
         return account;
     }

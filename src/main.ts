@@ -1,29 +1,25 @@
-import { ClientRepository } from './clients/repositories/client-repository';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { AccountFactory } from './factories/account.factory';
+import { AccountFactory } from './accounts/factories/account.factory';
 import { AccountType } from './accounts/enums/account.enum';
 import { ClientService } from './clients/services/client.service';
 import { ManagerService } from './managers/services/manager.service';
-import { UserStatus } from './user/enums/user.status.enum';
-import { Client } from './clients/models/client.model';
-import { Manager } from './managers/models/manager.model';
+import { UserStatus } from './users/enums/user.status.enum';
+import { ClientData } from './clients/models/client-data.model';
+import { ManagerModel } from './managers/models/manager.model';
 import { AccountService } from './accounts/services/account.service';
 import { IdGeneratorService } from './shared/utils/id-generator.service';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
 
-    // Criar instâncias de serviços e dependências
     const idGeneratorService = new IdGeneratorService();
-    const clientService = new ClientService(clientRepository );
-    const accountFactory = new AccountFactory(clientService, managerService); // Observe que managerService ainda não foi definido aqui
+    const clientService = new ClientService();  // Atualize conforme sua implementação
+    const accountFactory = new AccountFactory(clientService);
     const accountService = new AccountService(accountFactory, idGeneratorService);
-
-    // Criar o managerService depois das dependências que ele precisa
     const managerService = new ManagerService(clientService, accountService, accountFactory);
 
-    const client = new Client(
+    const client = new ClientData(
         'clientId',
         'Client Name',
         'password',
@@ -34,11 +30,11 @@ async function bootstrap() {
         UserStatus.Active
     );
 
-    const manager = new Manager(
+    const manager = new ManagerModel(
         'managerId',
         'Manager Name',
         'password',
-        'birthDate',
+        new Date('birthDate'),  // Substitua por uma data válida
         'cpf',
         'phone',
         'address',
@@ -68,8 +64,10 @@ async function bootstrap() {
     console.log(savingsAccount.generateStatement());
     console.log(checkingAccount.generateStatement());
 
-    const foundManager = managerService.findManagerById('managerId');
+    const foundManager = await managerService.findManagerById('managerId');
     console.log(foundManager);
 
     await app.listen(3000);
 }
+
+bootstrap();
