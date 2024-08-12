@@ -1,4 +1,4 @@
-import { User } from '../../user/models/user.model';
+import { User } from '../../users/models/user.model';
 import { AccountInterface } from '../../accounts/interfaces/account.interface';
 
 export interface BankInterface  {

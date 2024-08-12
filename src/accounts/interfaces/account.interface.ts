@@ -1,19 +1,15 @@
-import { Deposit, Withdrawal, Transfer, BalanceInquiry } from './account-methods.interface';
-import { ClientModel } from 'clients/models/client.model';
-import { AccountType } from 'accounts/enums/account-type.enum';
-import { Statement } from 'shared/interfaces/statement.interface';
+import { ClientData } from "src/clients/models/client-data.model";
 
-export interface AccountInterface extends Deposit, Withdrawal, Transfer, BalanceInquiry, Statement {
+export interface AccountInterface {
+    
     id: string;
-    client: ClientModel;
+    client: ClientData;
     balance: number;
-    type: AccountType;
-    checkBalance(): number;
-    generateStatement(): string[];
-  
     deposit(amount: number): void;
     withdraw(amount: number): boolean;
+    checkBalance(): number;
     transfer(destinationAccount: AccountInterface, amount: number): boolean;
-    getBalance(): number;
-    getStatement(): string[];
+    receiveTransfer(amount: number): void;
+    generateStatement(): string;
+    getAccountId(): string;
 }

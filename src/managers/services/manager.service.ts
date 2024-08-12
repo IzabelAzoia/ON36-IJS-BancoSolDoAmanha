@@ -3,15 +3,15 @@ import { ClientService } from '../../clients/services/client.service';
 import { AccountService } from '../../accounts/services/account.service';
 import { CreateClientDto } from '../../clients/dtos/create-client.dto';
 import { OpenAccountDto } from '../../accounts/dtos/open-account.dto';
-import { ClientModel } from '../../clients/models/client.model';
-import { AccountInterface } from 'accounts/interfaces/account.interface';
-import { AccountType } from 'accounts/enums/account-type.enum'; 
-import { AccountFactory } from 'accounts/factories/account.factory';
-import { ManagerModel } from 'managers/models/manager.model';
+import { ClientData } from '../../clients/models/client-data.model';
+import { AccountInterface } from '../../accounts/interfaces/account.interface';
+import { AccountType } from '../../accounts/enums/account-type.enum'; 
+import { AccountFactory } from '../../accounts/factories/account.factory';
+import { ManagerModel } from '../../managers/models/manager.model';
 
 @Injectable()
 export class ManagerService {
-  private clients: Map<string, ClientModel> = new Map();
+  private clients: Map<string, ClientData> = new Map();
   private accounts: Map<string, AccountInterface> = new Map();
   private managers: Map<string, ManagerModel> = new Map();
   
@@ -23,11 +23,11 @@ export class ManagerService {
 
   async addManager(manager: ManagerModel): Promise<void> {
     this.managers.set(manager.id, manager);
-}
+  }
 
-async findManagerById(managerId: string): Promise<ManagerModel | undefined> {
+  async findManagerById(managerId: string): Promise<ManagerModel | undefined> {
     return this.managers.get(managerId);
-}
+  }
 
   async openAccount(
     managerId: string,
@@ -35,7 +35,7 @@ async findManagerById(managerId: string): Promise<ManagerModel | undefined> {
     accountType: AccountType,
     initialBalance: number,
     extraParam?: number
-  ):  Promise<AccountInterface> {
+  ): Promise<AccountInterface> {
     const client = this.clients.get(clientId);
     if (!client) {
       throw new Error(`Client with ID ${clientId} does not exist.`);
@@ -47,30 +47,30 @@ async findManagerById(managerId: string): Promise<ManagerModel | undefined> {
       client,
       initialBalance,
       extraParam
-  );
+    );
 
-  this.accounts.set(newAccount.id, newAccount);
-  return newAccount;
+    this.accounts.set(newAccount.id, newAccount);
+    return newAccount;
   }
 
-  createClient(createClientDto: CreateClientDto): ClientModel {
-    return this.clientService.createClient(createClientDto);
+  async createClient(createClientDto: CreateClientDto): Promise<ClientData> {
+    return await this.clientService.createClient(createClientDto);
   }
 
-  removeClient(clientId: string): string {
-    return this.clientService.removeClient(clientId);
+  async removeClient(clientId: string): Promise<string> {
+    return await this.clientService.removeClient(clientId);
   }
 
-  openAccountForClient(clientId: string, openAccountDto: OpenAccountDto): string {
-    return this.accountService.openAccountForClient(clientId, openAccountDto);
+  async openAccountForClient(clientId: string, openAccountDto: OpenAccountDto): Promise<string> {
+    return await this.accountService.openAccountForClient(clientId, openAccountDto);
   }
 
-  closeAccountForClient(accountId: string): string {
-    return this.accountService.closeAccount(accountId);
+  async closeAccountForClient(accountId: string): Promise<string> {
+    return await this.accountService.closeAccount(accountId);
   }
 
-  modifyAccountTypeForClient(accountId: string, type: AccountType, balance: number): string {
-    return this.accountService.modifyAccountTypeForClient(accountId, type, balance);
+  async modifyAccountTypeForClient(accountId: string, type: AccountType, balance: number): Promise<string> {
+    return await this.accountService.modifyAccountTypeForClient(accountId, type, balance);
   }
 
   getAllClientsAndAccounts(): any[] {
@@ -80,11 +80,11 @@ async findManagerById(managerId: string): Promise<ManagerModel | undefined> {
     }));
   }
 
-  getAllAccounts(): AccountInterface[] {
-    return this.accountService.getAllAccounts();
+  async getAllAccounts(): Promise<AccountInterface[]> {
+    return await this.accountService.getAllAccounts();
   }
 
-  getClient(id: string): ClientModel {
+  async getClient(id: string): Promise<ClientData> {
     const client = this.clients.get(id);
     if (!client) {
       throw new NotFoundException('Client not found!');
@@ -92,11 +92,11 @@ async findManagerById(managerId: string): Promise<ManagerModel | undefined> {
     return client;
   }
 
-  getAllClients(): ClientModel[] {
+  getAllClients(): ClientData[] {
     return Array.from(this.clients.values());
   }
 
-  getManager(managerId: string): ManagerModel {
+  async getManager(managerId: string): Promise<ManagerModel> {
     const manager = this.managers.get(managerId);
     if (!manager) {
       throw new NotFoundException('Manager not found!');

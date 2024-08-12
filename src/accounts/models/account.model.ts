@@ -1,36 +1,26 @@
-import { ClientModel } from 'clients/models/client.model';
+import { AccountInterface } from '../../accounts/interfaces/account.interface';
+import { ClientData } from '../../clients/models/client-data.model';
+import { AccountType } from '../enums/account-type.enum';
 
-export class AccountModel {
+export abstract class AccountModel implements AccountInterface {
     id: string;
-    type: string;
-    client: ClientModel;
+    client: ClientData;
     balance: number;
+    type: AccountType;
+    public accountType: AccountType 
 
-    constructor(id: string, type: string, client: ClientModel, balance: number = 0) {
+    constructor(id: string, client: ClientData, balance: number, type: AccountType) {
         this.id = id;
-        this.type = type;
         this.client = client;
         this.balance = balance;
+        this.type = type;
     }
 
-    deposit(amount: number): void {
-        if (amount <= 0) {
-            throw new Error('Deposit amount must be positive');
-        }
-        this.balance += amount;
-    }
-
-    withdraw(amount: number): void {
-        if (amount <= 0) {
-            throw new Error('Withdrawal amount must be positive');
-        }
-        if (amount > this.balance) {
-            throw new Error('Insufficient funds');
-        }
-        this.balance -= amount;
-    }
-
-    getBalance(): number {
-        return this.balance;
-    }
+    abstract deposit(amount: number): void;
+    abstract withdraw(amount: number): boolean;
+    abstract checkBalance(): number;
+    abstract transfer(destinationAccount: AccountInterface, amount: number): boolean;
+    abstract receiveTransfer(amount: number): void;
+    abstract generateStatement(): string;
+    abstract getAccountId(): string;
 }

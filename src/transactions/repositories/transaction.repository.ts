@@ -1,5 +1,5 @@
+import { TransactionModel } from '../../transactions/models/transacao.model';
 import { Injectable } from '@nestjs/common';
-import { TransactionModel } from 'transactions/models/transaction.model';
 
 @Injectable()
 export class TransactionRepository {
@@ -16,7 +16,7 @@ export class TransactionRepository {
     }
 
     async save(transaction: TransactionModel): Promise<void> {
-        this.transactions.set(transaction.id, transaction);
+        this.transactions.set(transaction.getId(), transaction);
     }
 
     async delete(id: string): Promise<void> {

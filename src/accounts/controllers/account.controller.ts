@@ -1,12 +1,12 @@
 import { Controller, Get, Post, Delete, Param, Body, NotFoundException, UseGuards } from '@nestjs/common';
-import { AccountService } from 'accounts/services/account.service';
-import { AccountInterface } from 'accounts/interfaces/account.interface';
-import { AccountType } from 'accounts/enums/account-type.enum';
-import { AuthGuard } from 'shared/guards/auth.guard';
-import { RolesGuard } from 'shared/guards/roles.guards';
-import { Roles } from 'shared/guards/roles.decorator';
-import { ManagerModel } from 'managers/models/manager.model';
-import { ClientModel } from 'clients/models/client.model';
+import { AccountService } from '../../accounts/services/account.service';
+import { AccountInterface } from '../../accounts/interfaces/account.interface';
+import { AccountType } from '../../accounts/enums/account-type.enum';
+import { AuthGuard } from '../../shared/guards/auth.guard';
+import { RolesGuard } from '../../shared/guards/roles.guards';
+import { Roles } from '../../shared/guards/roles.decorator';
+import { ManagerModel } from '../../managers/models/manager.model';
+import { ClientData } from '../../clients/models/client-data.model';
 
 @Controller('accounts')
 export class AccountController {
@@ -19,7 +19,7 @@ export class AccountController {
     @Roles('manager')
     createAccount(
         @Body('manager') manager: ManagerModel,
-        @Body('client') client: ClientModel,
+        @Body('client') client: ClientData,
         @Body('balance') balance: number,
         @Body('type') type: AccountType,
         @Body('extraParam') extraParam: number

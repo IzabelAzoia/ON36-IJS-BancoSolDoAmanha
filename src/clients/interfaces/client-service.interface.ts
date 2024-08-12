@@ -1,11 +1,14 @@
+import { UserInterface } from "src/users/interfaces/user.interface";
 import { CreateClientDto } from "../dtos/create-client.dto";
-import { Client } from "../../accounts/models/client.model";
+import { ClientData } from "../models/client-data.model";
+
 
 export interface ClientServiceInterface {
-  createClient(createClientDto: CreateClientDto): Promise<Client>;
+  createClient(createClientDto: CreateClientDto): Promise<ClientData>;
+  findById(id: string): Promise<ClientData | undefined>;
   removeClient(clientId: string): Promise<string>;
-  getAllClients(): Promise<Client[]>;
-  getClient(clientId: string): Promise<Client | undefined>;
+  getAllClients(): Promise<ClientData[]>;
+  getClient(clientId: string): Promise<ClientData | undefined>;
   getBalance(id: string): Promise<number>;
   getStatement(id: string): Promise<string[]>;
-  }
+}

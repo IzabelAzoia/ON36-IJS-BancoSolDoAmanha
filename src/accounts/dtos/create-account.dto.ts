@@ -1,10 +1,11 @@
-import { ClientModel } from '../../clients/models/client.model';
+import { ClientData } from '../../clients/models/client-data.model';
 import { AccountType } from '../enums/account-type.enum';
 
 export class CreateAccountDto {
     id: string;
     type: AccountType;
-    client: ClientModel;
+    client: ClientData;
     balance: number;
     extraParam?: number;
 }
+

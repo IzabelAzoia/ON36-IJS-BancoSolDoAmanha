@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
-import { AccountInterface } from 'accounts/interfaces/account.interface';
-import { AccountFactory } from 'accounts/factories/account.factory';
+import { AccountInterface } from '../../accounts/interfaces/account.interface';
+import { AccountFactory } from '../../accounts/factories/account.factory';
 import { IdGeneratorService } from '../../shared/utils/id-generator.service';
-import { ManagerModel } from 'managers/models/manager.model';
-import { ClientModel } from 'clients/models/client.model';
-import { AccountType } from 'accounts/enums/account-type.enum';
-import { OpenAccountDto } from 'accounts/dtos/open-account.dto';
+import { ManagerModel } from '../../managers/models/manager.model';
+import { ClientData } from '../../clients/models/client-data.model'; 
+import { AccountType } from '../../accounts/enums/account-type.enum';
+import { OpenAccountDto } from '../../accounts/dtos/open-account.dto';
 
 @Injectable()
 export class AccountService {
@@ -64,7 +64,7 @@ export class AccountService {
     openAccount(
         manager: ManagerModel,
         type: AccountType,
-        client: ClientModel,
+        client: ClientData,
         balance: number,
         extraParam?: number
       ): AccountInterface {
@@ -148,7 +148,7 @@ export class AccountService {
         return this.findAll();
     }
 
-    private findClientById(clientId: string): ClientModel | undefined {
+    private findClientById(clientId: string): ClientData | undefined {
         return undefined;
     }
 

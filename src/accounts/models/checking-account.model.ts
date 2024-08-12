@@ -1,58 +1,78 @@
-import { Statement } from 'shared/interfaces/statement.interface';
-import { AccountType } from 'accounts/enums/account-type.enum';
-import { AccountInterface } from 'accounts/interfaces/account.interface';
-import { ClientModel } from 'clients/models/client.model';
+import { AccountModel } from './account.model';
+import { ClientData } from '../../clients/models/client-data.model';
+import { AccountType } from '../enums/account-type.enum';
+import { AccountInterface } from '../interfaces/account.interface';
 
-export class CheckingAccount implements AccountInterface, Statement {
-    id: string;
-    client: ClientModel;
-    balance: number;
-    type: AccountType = AccountType.Checking;
-    overdraftLimit: number;
-    private statement: string[] = [];
+export class CheckingAccount extends AccountModel implements AccountInterface {
+    private transactionHistory: string[] = [];
 
     constructor(
-        public clientId: string,
-        public dailyWithdrawalLimit: number,
-        public monthlyServiceFee: number,
-    ) {}
+        public id: string,
+        public balance: number,
+        public client: ClientData,
+        public overdraftLimit: number,
+        public accountType: AccountType,
+        public createdDate: Date,
+        public accountHolderName: string
+    ) {
+        super(id, client, balance, accountType);
+    }
 
     deposit(amount: number): void {
+        if (amount <= 0) {
+            throw new Error('O valor do depósito deve ser positivo');
+        }
         this.balance += amount;
-        this.statement.push(`Deposited: ${amount}`);
+        this.transactionHistory.push(`Depósito de R$${amount.toFixed(2)}`);
     }
 
     withdraw(amount: number): boolean {
-        if (amount <= this.balance + this.overdraftLimit) {
-            this.balance -= amount;
-            this.statement.push(`Withdrew: ${amount}`);
-            return true;
+        if (amount <= 0) {
+            throw new Error('O valor do saque deve ser positivo');
         }
-        return false;
+        if (amount > this.balance) {
+            throw new Error('Fundos insuficientes');
+        }
+        this.balance -= amount;
+        this.transactionHistory.push(`Saque de R$${amount.toFixed(2)}`);
+        return true;
+    }
+
+    checkBalance(): number { 
+        return this.balance;
     }
 
     transfer(destinationAccount: AccountInterface, amount: number): boolean {
-        if (this.withdraw(amount)) {
-            destinationAccount.deposit(amount);
-            this.statement.push(`Transferred: ${amount} to ${destinationAccount.id}`);
-            return true;
+        if (amount <= 0) {
+            throw new Error("O valor da transferência deve ser positivo.");
         }
-        return false;
+        if (amount > this.balance) {
+            throw new Error("Saldo insuficiente para realizar a transferência.");
+        }
+
+        this.balance -= amount;
+        destinationAccount.receiveTransfer(amount);
+        this.transactionHistory.push(`Transferência de R$${amount.toFixed(2)} para a conta ${destinationAccount.getAccountId()}`);
+        
+        return true;
     }
 
-    getBalance(): number {
-        return this.balance;
+    generateStatement(): string {
+        return `
+        Extrato da Conta Corrente (${this.id}):
+        Cliente: ${this.client.name}
+        Saldo Atual: R$${this.balance.toFixed(2)}
+        Histórico de Transações:
+        ${this.transactionHistory.join("\n")}
+        `;
     }
 
-    getStatement(): string[] {
-        return ["Extrato de conta corrente"];
+    receiveTransfer(amount: number): void {
+        this.balance += amount;
+        this.transactionHistory.push(`Recebimento de R$${amount.toFixed(2)} de outra conta`);
     }
 
-    checkBalance(): number {
-        return this.balance;
-    }
-
-    generateStatement(): string[] {
-        return this.statement;
+    getAccountId(): string {
+        return this.id;
     }
 }
