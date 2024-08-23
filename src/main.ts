@@ -1,14 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { AccountFactory } from './accounts/factories/account.factory';
-import { AccountType } from './accounts/enums/account.enum';
-import { ClientService } from './clients/services/client.service';
-import { ManagerService } from './managers/services/manager.service';
-import { UserStatus } from './users/enums/user.status.enum';
-import { ClientData } from './clients/models/client-data.model';
-import { ManagerModel } from './managers/models/manager.model';
-import { AccountService } from './accounts/services/account.service';
-import { IdGeneratorService } from './shared/utils/id-generator.service';
+import { AccountFactory } from './domain/accounts/account.factory';
+import { AccountType } from './domain/accounts/account.enum';
+import { ClientService } from './domain/clients/services/client.service';
+import { ManagerService } from './domain/managers/services/manager-admin.service';
+import { UserStatus } from './domain/users/user.status.enum';
+import { ClientEntity } from './domain/clients/client.entity';
+import { ManagerEntity } from './domain/managers/entities/manager.entity';
+import { AccountService } from './domain/accounts/services/account.service';
+import { IdGeneratorService } from './infrastructure/shared/utils/id-generator.service';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -19,7 +19,7 @@ async function bootstrap() {
     const accountService = new AccountService(accountFactory, idGeneratorService);
     const managerService = new ManagerService(clientService, accountService, accountFactory);
 
-    const client = new ClientData(
+    const client = new ClientEntity(
         'clientId',
         'Client Name',
         'password',
@@ -30,7 +30,7 @@ async function bootstrap() {
         UserStatus.Active
     );
 
-    const manager = new ManagerModel(
+    const manager = new ManagerEntity(
         'managerId',
         'Manager Name',
         'password',
@@ -61,8 +61,8 @@ async function bootstrap() {
         1000
     );
 
-    console.log(savingsAccount.generateStatement());
-    console.log(checkingAccount.generateStatement());
+    console.log(await savingsAccount.generateStatement());
+    console.log(await checkingAccount.generateStatement());
 
     const foundManager = await managerService.findManagerById('managerId');
     console.log(foundManager);

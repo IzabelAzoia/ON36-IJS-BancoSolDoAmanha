@@ -1,9 +1,8 @@
-import { ClientInterface } from 'clients/interfaces/client.interface';
-import { UserInterface } from 'user/interfaces/user.interface';
-import { IClientRepositoryInterface } from 'clients/interfaces/i-cliente-repositoy.interface';
-import { UserType } from 'user/enums/user-types.enum';
+import { ClientInterface } from '../../domain/clients/client.interface';
+import { UserType } from '../../domain/users/user-types.enum';
+import { ClientRepositoryInterface } from '../../outbound/clients/cliente-repositoy.interface';
 
-export const mockClientRepository: jest.Mocked<IClientRepositoryInterface> = {
+export const mockClientRepository: jest.Mocked<ClientRepositoryInterface> = {
   findById: jest.fn().mockResolvedValue({
     id: 'clientId',
     name: 'John Doe',

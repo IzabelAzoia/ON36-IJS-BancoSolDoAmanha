@@ -1,29 +1,59 @@
-import { CheckingAccount } from '../../../accounts/models/checking-account.model';
-import { SavingsAccount } from '../../../accounts/models/savings-account.model';
-import { ClientData } from '../../../clients/models/client-data.model';
-import { AccountType } from '../../../accounts/enums/account-type.enum';
-import { ClientAccountManager } from '../../../clients/models/client-account-manager.model';
+import { CheckingAccount } from '../../../domain/accounts/checking-account.model';
+import { SavingsAccount } from '../../../domain/accounts/savings-account.model';
+import { ClientEntity } from '../../../domain/clients/entities/client.entity';
+import { AccountType } from '../../../domain/accounts/account-type.enum';
 
 describe('ClientAccountManager', () => {
-  let accountManager: ClientAccountManager;
-  let checkingAccount: CheckingAccount;
-  let savingsAccount: SavingsAccount;
+    let checkingAccount: CheckingAccount;
+    let savingsAccount: SavingsAccount;
+    let client: ClientEntity;
 
-  beforeEach(() => {
-      accountManager = new ClientAccountManager();
-      checkingAccount = new CheckingAccount('1', { name: 'John Doe' } as ClientData, 1000, AccountType.Checking);
-      savingsAccount = new SavingsAccount('2', { name: 'Jane Doe' } as ClientData, 2000, AccountType.Savings);
-      accountManager.addAccount(checkingAccount);
-      accountManager.addAccount(savingsAccount);
-  });
+    beforeEach(() => {
+        client = new ClientEntity(
+            'client-id',
+            'Client Name',
+            'email@example.com',
+            'password123',
+            '01-01-1990',
+            '123.456.789-00',
+            '123-456-7890',
+            '123 Main St'
+        );
 
-  test('should add and retrieve accounts', () => {
-      expect(accountManager.getAccount('1')).toBe(checkingAccount);
-      expect(accountManager.getAccount('2')).toBe(savingsAccount);
-  });
+        checkingAccount = new CheckingAccount(
+            '1',
+            1000,
+            client,
+            500, // overdraftLimit
+            AccountType.Checking,
+            new Date(), // createdDate
+            'John Doe' // accountHolderName
+        );
 
-  test('should remove account correctly', () => {
-      accountManager.removeAccount('1');
-      expect(accountManager.getAccount('1')).toBeUndefined();
-  });
+        savingsAccount = new SavingsAccount(
+            '2',
+            2000,
+            client,
+            0.05, // interestRate
+            AccountType.Savings,
+            new Date() // createdDate
+        );
+    });
+
+    test('should create CheckingAccount with correct properties', () => {
+        expect(checkingAccount.id).toBe('1');
+        expect(checkingAccount.client).toBe(client);
+        expect(checkingAccount.balance).toBe(1000);
+        expect(checkingAccount.accountType).toBe(AccountType.Checking);
+        expect(checkingAccount.overdraftLimit).toBe(500);
+        expect(checkingAccount.accountHolderName).toBe('John Doe');
+    });
+
+    test('should create SavingsAccount with correct properties', () => {
+        expect(savingsAccount.id).toBe('2');
+        expect(savingsAccount.client).toBe(client);
+        expect(savingsAccount.balance).toBe(2000);
+        expect(savingsAccount.accountType).toBe(AccountType.Savings);
+        expect(savingsAccount.interestRate).toBe(0.05);
+    });
 });

@@ -1,8 +1,8 @@
-import { UserStatus } from './../../../users/enums/user.status.enum';
-import { User } from '../../../users/models/user.model';
+import { UserStatus } from '../../../domain/users/user.status.enum';
+import { User } from '../../../domain/users/user.entity';
 import { UserAuthentication } from '../../../users/models/user-authentication.model';
-import { UserManager } from '../../../users/models/user-manager.model';
-import { UserType } from '../../../users/enums/user-types.enum';
+import { UserManager } from '../../../domain/users/user-manager.model';
+import { UserType } from '../../../domain/users/user-types.enum';
 
 describe('UserAuthentication', () => {
     let userAuth: UserAuthentication;

@@ -1,6 +1,6 @@
-import { TransactionService } from '../../../transactions/services/transaction.service';
+import { TransactionService } from '../../../domain/transactions/services/transaction.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { TransactionController } from '../../../transactions/controllers/transaction.controller';
+import { TransactionController } from '../../../inbound/controllers/transaction.controller';
 
 describe('TransactionsController', () => {
   let controller: TransactionController;
