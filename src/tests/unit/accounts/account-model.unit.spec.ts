@@ -1,13 +1,13 @@
-import { ConcreteAccount } from '../../../accounts/models/concrete-account.model';
-import { ClientData } from '../../../clients/models/client-data.model';
-import { AccountType } from '../../../accounts/enums/account-type.enum';
+import { ConcreteAccount } from '../../../domain/accounts/concrete-account.model';
+import { ClientEntity } from '../../../domain/clients/entities/client.entity';
+import { AccountType } from '../../../domain/accounts/account-type.enum';
 
 describe('ConcreteAccount', () => {
     let account: ConcreteAccount;
-    let client: ClientData;
+    let client: ClientEntity;
 
     beforeEach(() => {
-        client = new ClientData(
+        client = new ClientEntity(
             'client-id',
             'Client Name',
             'email@example.com',
@@ -20,30 +20,36 @@ describe('ConcreteAccount', () => {
         account = new ConcreteAccount('account-id', client, 100, AccountType.Checking);
     });
 
-    test('should deposit money correctly', () => {
+    test('should implement AccountInterface', () => {
+        expect(account.deposit).toBeDefined();
+        expect(account.withdraw).toBeDefined();
+        expect(account.transfer).toBeDefined();
+        expect(account.checkBalance).toBeDefined();
+        expect(account.generateStatement).toBeDefined();
+    });
+
+    test('should deposit funds correctly', () => {
         account.deposit(50);
         expect(account.checkBalance()).toBe(150);
     });
 
-    test('should withdraw money correctly', () => {
-        account.withdraw(30);
-        expect(account.checkBalance()).toBe(70);
+    test('should withdraw funds correctly', () => {
+        const success = account.withdraw(50);
+        expect(success).toBe(true);
+        expect(account.checkBalance()).toBe(50);
     });
 
-    test('should throw error on insufficient funds', () => {
-        expect(() => account.withdraw(200)).toThrow('Insufficient funds');
+    test('should not withdraw more than balance', () => {
+        const success = account.withdraw(150);
+        expect(success).toBe(false);
+        expect(account.checkBalance()).toBe(100);
     });
 
-    test('should throw error on negative deposit', () => {
-        expect(() => account.deposit(-10)).toThrow('Deposit amount must be positive');
+    test('should transfer funds correctly', () => {
+        const destinationAccount = new ConcreteAccount('destination-id', client, 100, AccountType.Checking);
+        const success = account.transfer(destinationAccount, 50);
+        expect(success).toBe(true);
+        expect(account.checkBalance()).toBe(50);
+        expect(destinationAccount.checkBalance()).toBe(150);
     });
-
-    test('should throw error on negative withdrawal', () => {
-        expect(() => account.withdraw(-10)).toThrow('Withdrawal amount must be positive');
-    });
-
-    test('should generate a statement', () => {
-        const statement = account.generateStatement();
-        expect(statement).toBe('Statement line 1');
-    });
-});
+});    

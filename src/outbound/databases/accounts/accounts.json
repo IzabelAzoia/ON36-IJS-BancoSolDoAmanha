@@ -1,0 +1,36 @@
+[
+    {
+      "id": "1a2b3c4d5e",
+      "type": "Checking",
+      "client": {
+        "id": "client1",
+        "name": "John Doe",
+        "password": "securepassword",
+        "birthDate": "1980-01-01T00:00:00.000Z",
+        "cpf": "123.456.789-00",
+        "phone": "+1234567890",
+        "address": "123 Main St, Anytown",
+        "userType": "Client",
+        "userStatus": "Active"
+      },
+      "balance": 1500.00,
+      "extraParam": 500.00
+    },
+    {
+      "id": "6f7g8h9i0j",
+      "type": "Savings",
+      "client": {
+        "id": "client2",
+        "name": "Jane Smith",
+        "password": "anothersecurepassword",
+        "birthDate": "1990-05-15T00:00:00.000Z",
+        "cpf": "987.654.321-00",
+        "phone": "+0987654321",
+        "address": "456 Elm St, Othertown",
+        "userType": "Client",
+        "userStatus": "Active"
+      },
+      "balance": 2500.00
+    }
+  ]
+

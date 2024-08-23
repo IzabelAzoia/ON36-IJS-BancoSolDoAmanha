@@ -1,15 +1,14 @@
-import { AccountModel } from '../../../accounts/models/account.model';
-import { AccountInterface } from '../../../accounts/interfaces/account.interface';
-import { ClientData } from '../../../clients/models/client-data.model';
-import { AccountType } from '../../../accounts/enums/account-type.enum';
-import { ConcreteAccount } from '../../../accounts/models/concrete-account.model';
+
+import { ClientEntity } from '../../../domain/clients/entities/client.entity';
+import { AccountType } from '../../../domain/accounts/account-type.enum';
+import { ConcreteAccount } from '../../../domain/accounts/concrete-account.model';
 
 describe('ConcreteAccount', () => {
     let account: ConcreteAccount;
-    let client: ClientData;
+    let client: ClientEntity;
 
     beforeEach(() => {
-        client = new ClientData(
+        client = new ClientEntity(
             'client-id',
             'Client Name',
             'email@example.com',

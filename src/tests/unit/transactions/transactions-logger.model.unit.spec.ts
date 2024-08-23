@@ -1,4 +1,4 @@
-import { TransactionService } from '../../../transactions/services/transaction.service';
+import { TransactionService } from '../../../domain/transactions/services/transaction.service';
 import { Test, TestingModule } from '@nestjs/testing';
 
 describe('TransactionsService', () => {

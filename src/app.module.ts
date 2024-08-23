@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AccountService } from './accounts/services/account.service';
-import { AccountFactory } from './factories/account.factory';
+import { AccountService } from './domain/accounts/services/account.service';
+import { AccountFactory } from './domain/accounts/account.factory';
 
 @Module({
   imports: [],

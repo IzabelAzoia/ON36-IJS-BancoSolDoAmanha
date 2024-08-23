@@ -1,4 +1,4 @@
-import { ClientAuth } from '../../../clients/models/client-auth.model';
+import { ClientAuth } from '../../../domain/clients/services/client-auth.model';
 
 describe('ClientAuth', () => {
   test('should create a new ClientAuth instance', () => {
